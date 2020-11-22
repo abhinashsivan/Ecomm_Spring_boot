@@ -1,25 +1,25 @@
-package com.Ecomm.Ecomm.Model;
+package com.Ecomm.Ecomm.model;
 
 import java.util.List;
 
 public class Product {
 
-    int productId;
+    Long productId;
     String productName;
-    List<Integer> reviewedUsers;
+    List<Long> reviewedUsers;
 
     public Product() {
     }
 
-    public Product(int productId, String productName, List<Integer> reviewedUsers) {
+    public Product(Long productId, String productName, List<Long> reviewedUsers) {
         this.productId = productId;
         this.productName = productName;
         this.reviewedUsers = reviewedUsers;
     }
 
-    public int getProductId() { return productId; }
+    public Long getProductId() { return productId; }
 
-    public void setProductId(int productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 
@@ -31,11 +31,11 @@ public class Product {
         this.productName = productName;
     }
 
-    public List<Integer> getReviewedUsers() {
+    public List<Long> getReviewedUsers() {
         return reviewedUsers;
     }
 
-    public void setReviewedUsers(List<Integer> reviewedUsers) {
+    public void setReviewedUsers(List<Long> reviewedUsers) {
         this.reviewedUsers = reviewedUsers;
     }
 }

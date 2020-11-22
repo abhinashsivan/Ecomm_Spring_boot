@@ -1,4 +1,4 @@
-package com.Ecomm.Ecomm.Controller;
+package com.Ecomm.Ecomm.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,7 +10,7 @@ import java.util.List;
 public class AddProduct {
 
     @GetMapping("/product/add")
-    public String addProduct(@RequestParam(required = true) String productName, @RequestParam(required = true) List<Long> cusIds){
+    public String addProduct(@RequestParam String productName, @RequestParam List<Long> cusIds){
 
 
         return "";
