@@ -16,9 +16,8 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(Long cus_id, String cus_name) {
-        this.cusId = cus_id;
-        this.cusName = cus_name;
+    public Customer(String cusName) {
+        this.cusName = cusName;
     }
 
     public Long getCusId() {
