@@ -4,6 +4,8 @@ import com.Ecomm.Ecomm.dao.CustomerRepository;
 import com.Ecomm.Ecomm.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
 
@@ -29,13 +31,18 @@ public class CustomerService {
         return  success;
     }
 
+    public Customer checkCustomerById(@RequestParam  long id){
 
-    public Customer checkCustomerById(long id){
-        boolean success = true;
-        Long identity = repository.findById(id).get().getCusId();
-        String name = repository.findById(id).get().getCusName();
+        Customer customer;
 
-        return new Customer(identity, name);
+        if(repository.existsById(id)){
+            customer = new Customer(repository.findById(id).get().getCusId(), repository.findById(id).get().getCusName());
+
+        }
+        else
+            customer = null;
+
+        return customer;
     }
 
 }

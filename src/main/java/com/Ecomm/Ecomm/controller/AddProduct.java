@@ -28,16 +28,20 @@ public class AddProduct {
     @Autowired
     yamlFileServices yamlFileServices;
 
+    RestTemplate restTemplate = new RestTemplate();
+
 
     @GetMapping("/product/add")
     public String addProduct(@RequestParam(name = "pname") String productName, @RequestParam(name = "ids") List<Long> reviewerCusIds) throws FileNotFoundException {
         boolean exist = true;
+
         for (Long id : reviewerCusIds) {
-//             exist = customerService.findCustomerById(id).isPresent();
-            RestTemplate restTemplate = new RestTemplate();
+
             String url = yamlFileServices.getUrl()+"?id="+id;
-            Optional<Customer> op = null;
-            restTemplate.getForObject(url, Customer.class,op);
+            Customer customer = restTemplate.getForObject(url, Customer.class);
+            if(customer == null)
+                exist = false;
+
         }
 
         if (!exist)

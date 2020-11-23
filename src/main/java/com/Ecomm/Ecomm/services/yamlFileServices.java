@@ -18,6 +18,7 @@ public class yamlFileServices {
         String path = "src/main/resources/api.yaml";
 
         Map<String, String> map = yaml.load(new FileInputStream(new File(path)));
+        System.out.println("-----------------url is   "+map.get("url"));
 
         return map.get("url");
     }

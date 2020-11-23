@@ -19,14 +19,11 @@ public class SearchCustomer {
     public SearchCustomer() { }
 
     @GetMapping("/customer/search")
-    public String searchCustomer (@RequestParam Long id) {
+    public Customer searchCustomer (@RequestParam Long id) {
 
         Customer customer = service.checkCustomerById(id);
 
-        if(!customer.getCusName().isBlank())
-            return "name is "+customer.getCusName();
-        else
-            return "User not found";
+        return customer;
 
     }
 
