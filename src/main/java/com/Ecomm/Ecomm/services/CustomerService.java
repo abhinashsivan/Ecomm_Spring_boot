@@ -5,6 +5,8 @@ import com.Ecomm.Ecomm.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CustomerService {
 
@@ -25,7 +27,16 @@ public class CustomerService {
         }
 
         return  success;
+    }
 
+
+    public Optional<Customer> findCustomerById(long id){
+        boolean success = true;
+        Optional<Customer> customer = repository.findById(id);
+
+
+
+        return customer;
     }
 
 }
