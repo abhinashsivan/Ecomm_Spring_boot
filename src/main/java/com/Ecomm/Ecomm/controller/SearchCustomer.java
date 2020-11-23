@@ -24,7 +24,11 @@ public class SearchCustomer {
     public String searchCustomer (@RequestParam Long id) {
 
         Optional<Customer> customer = service.findCustomerById(id);
-        return "name is "+customer.get().getCusName();
+
+        if(customer.isPresent())
+            return "name is "+customer.get().getCusName();
+        else
+            return "User not found";
 
     }
 

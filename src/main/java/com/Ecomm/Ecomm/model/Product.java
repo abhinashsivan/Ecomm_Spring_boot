@@ -1,18 +1,21 @@
 package com.Ecomm.Ecomm.model;
 
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 public class Product {
 
+    @Id @GeneratedValue
     Long productId;
     String productName;
-    List<Long> reviewedUsers;
+    String reviewedUsers;
 
     public Product() {
     }
 
-    public Product(Long productId, String productName, List<Long> reviewedUsers) {
-        this.productId = productId;
+    public Product(String productName, String reviewedUsers) {
         this.productName = productName;
         this.reviewedUsers = reviewedUsers;
     }
@@ -31,11 +34,11 @@ public class Product {
         this.productName = productName;
     }
 
-    public List<Long> getReviewedUsers() {
+    public String getReviewedUsers() {
         return reviewedUsers;
     }
 
-    public void setReviewedUsers(List<Long> reviewedUsers) {
+    public void setReviewedUsers(String reviewedUsers) {
         this.reviewedUsers = reviewedUsers;
     }
 }

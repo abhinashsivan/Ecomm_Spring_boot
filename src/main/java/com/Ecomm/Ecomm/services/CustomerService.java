@@ -34,8 +34,6 @@ public class CustomerService {
         boolean success = true;
         Optional<Customer> customer = repository.findById(id);
 
-
-
         return customer;
     }
 
