@@ -11,11 +11,11 @@ import java.util.Map;
 @Service
 public class yamlFileServices {
 
-    public String yamlFileToMap() throws FileNotFoundException{
+    public String getUrl() throws FileNotFoundException{
 
         Yaml yaml = new Yaml();
 
-        String path = "http://localhost:8080/customer/search";
+        String path = "src/main/resources/api.yaml";
 
         Map<String, String> map = yaml.load(new FileInputStream(new File(path)));
 

@@ -12,30 +12,21 @@ public class ProductService {
 
 
     @Autowired
-    ProductRepository productRepositoy;
+    ProductRepository productRepository;
 
     public ProductService(ProductRepository productRepositoy) {
-        this.productRepositoy = productRepositoy;
+        this.productRepository = productRepositoy;
     }
 
-    public boolean saveToDB(Product product){
-        boolean sucessfull = true;
+    public void saveToDB(Product product){
 
-        try{
-            productRepositoy.save(product);
-        }
-        catch (Exception e){
-            sucessfull = false;
-        }
-
-        return sucessfull;
+        productRepository.save(product);
 
     }
 
     public Optional<Product> findProductById(long id){
-        boolean sucess = true;
 
-        Optional<Product> product = productRepositoy.findById(id);
+        Optional<Product> product = productRepository.findById(id);
 
         return product;
     }

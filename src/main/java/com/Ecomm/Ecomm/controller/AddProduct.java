@@ -34,6 +34,6 @@ public class AddProduct {
 
 
 
-        return "product saved"+reviewerCusIds.toString()+"\n"+productRepositoy.toString();
+        return "product saved "+productName;
     }
 }
