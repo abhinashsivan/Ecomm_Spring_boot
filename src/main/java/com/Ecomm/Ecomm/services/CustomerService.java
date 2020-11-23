@@ -30,11 +30,12 @@ public class CustomerService {
     }
 
 
-    public Optional<Customer> findCustomerById(long id){
+    public Customer checkCustomerById(long id){
         boolean success = true;
-        Optional<Customer> customer = repository.findById(id);
+        Long identity = repository.findById(id).get().getCusId();
+        String name = repository.findById(id).get().getCusName();
 
-        return customer;
+        return new Customer(identity, name);
     }
 
 }

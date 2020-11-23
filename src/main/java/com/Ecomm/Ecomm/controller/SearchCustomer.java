@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
-
 @RestController
 public class SearchCustomer {
 
@@ -23,10 +21,10 @@ public class SearchCustomer {
     @GetMapping("/customer/search")
     public String searchCustomer (@RequestParam Long id) {
 
-        Optional<Customer> customer = service.findCustomerById(id);
+        Customer customer = service.checkCustomerById(id);
 
-        if(customer.isPresent())
-            return "name is "+customer.get().getCusName();
+        if(!customer.getCusName().isBlank())
+            return "name is "+customer.getCusName();
         else
             return "User not found";
 

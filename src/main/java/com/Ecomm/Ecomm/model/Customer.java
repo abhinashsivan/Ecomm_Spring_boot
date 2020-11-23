@@ -20,6 +20,11 @@ public class Customer {
         this.cusName = cusName;
     }
 
+    public Customer(Long cusId, String cusName) {
+        this.cusId = cusId;
+        this.cusName = cusName;
+    }
+
     public Long getCusId() {
         return cusId;
     }
