@@ -19,10 +19,13 @@ public class SearchProduct {
     private ProductService productService;
 
     @GetMapping("/product/search")
-     public String searchProduct (@RequestParam Long id){
+    public String searchProduct(@RequestParam Long id) {
 
         Optional<Product> product = productService.findProductById(id);
 
-        return "Results\n NAME: "+product.get().getProductName()+"Reviewed Users: "+product.get().getReviewedUsers();
+        if (product.isPresent())
+            return "Results\n NAME: " + product.get().getProductName() + "Reviewed Users: " + product.get().getReviewedUsers();
+        else
+            return "product not found";
     }
 }

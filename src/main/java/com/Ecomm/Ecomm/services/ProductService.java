@@ -18,13 +18,13 @@ public class ProductService {
         this.productRepository = productRepositoy;
     }
 
-    public void saveToDB(Product product){
+    public void saveToDB(Product product) {
 
         productRepository.save(product);
 
     }
 
-    public Optional<Product> findProductById(long id){
+    public Optional<Product> findProductById(long id) {
 
         Optional<Product> product = productRepository.findById(id);
 

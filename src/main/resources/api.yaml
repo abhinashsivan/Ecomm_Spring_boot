@@ -1,1 +1,5 @@
-url: "http://localhost:8080/customer/search"
+---
+api: sample api
+author: abhinash
+version: 0.0.1
+url: http://localhost:8080/customer/search

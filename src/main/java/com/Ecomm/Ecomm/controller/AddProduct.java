@@ -3,7 +3,6 @@ package com.Ecomm.Ecomm.controller;
 import com.Ecomm.Ecomm.dao.ProductRepository;
 import com.Ecomm.Ecomm.model.Customer;
 import com.Ecomm.Ecomm.model.Product;
-import com.Ecomm.Ecomm.services.CustomerService;
 import com.Ecomm.Ecomm.services.ProductService;
 import com.Ecomm.Ecomm.services.yamlFileServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +13,11 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.FileNotFoundException;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class AddProduct {
 
-    @Autowired
-    CustomerService customerService;
+
     @Autowired
     ProductRepository productRepositoy;
     @Autowired
@@ -37,9 +34,9 @@ public class AddProduct {
 
         for (Long id : reviewerCusIds) {
 
-            String url = yamlFileServices.getUrl()+"?id="+id;
+            String url = yamlFileServices.getUrl() + "?id=" + id;
             Customer customer = restTemplate.getForObject(url, Customer.class);
-            if(customer == null)
+            if (customer == null)
                 exist = false;
 
         }

@@ -7,10 +7,11 @@ import javax.persistence.Id;
 @Entity
 public class Product {
 
-    @Id @GeneratedValue
-    Long productId;
-    String productName;
-    String reviewedUsers;
+    @Id
+    @GeneratedValue
+    private Long productId;
+    private String productName;
+    private String reviewedUsers;
 
     public Product() {
     }
@@ -20,7 +21,9 @@ public class Product {
         this.reviewedUsers = reviewedUsers;
     }
 
-    public Long getProductId() { return productId; }
+    public Long getProductId() {
+        return productId;
+    }
 
     public void setProductId(Long productId) {
         this.productId = productId;
