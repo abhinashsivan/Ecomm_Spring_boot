@@ -17,6 +17,7 @@ public class AddCustomer {
     private CustomerService service;
 
     @GetMapping("/customer/add")
+    //add
     public String addCustomer(@RequestParam String name) {
 
 
