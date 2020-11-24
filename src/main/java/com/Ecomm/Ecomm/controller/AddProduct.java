@@ -7,6 +7,8 @@ import com.Ecomm.Ecomm.services.CustomerService;
 import com.Ecomm.Ecomm.services.ProductService;
 import com.Ecomm.Ecomm.services.yamlFileServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +34,7 @@ public class AddProduct {
 
 
     @GetMapping("/product/add")
-    public String addProduct(@RequestParam(name = "pname") String productName, @RequestParam(name = "ids") List<Long> reviewerCusIds) throws FileNotFoundException {
+    public ResponseEntity<String> addProduct(@RequestParam(name = "pname") String productName, @RequestParam(name = "ids") List<Long> reviewerCusIds) throws FileNotFoundException {
         boolean exist = true;
 
         for (Long id : reviewerCusIds) {
@@ -45,11 +47,11 @@ public class AddProduct {
         }
 
         if (!exist)
-            return "Customer not found";
+            return new ResponseEntity<String>("User Not Found", HttpStatus.NOT_FOUND);
 
         productService.saveToDB(new Product(productName, reviewerCusIds.toString()));
 
 
-        return "product saved " + productName;
+        return new ResponseEntity<String>("Product Added", HttpStatus.ACCEPTED);
     }
 }

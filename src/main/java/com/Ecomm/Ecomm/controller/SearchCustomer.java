@@ -4,6 +4,8 @@ import com.Ecomm.Ecomm.dao.CustomerRepository;
 import com.Ecomm.Ecomm.model.Customer;
 import com.Ecomm.Ecomm.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,11 +21,17 @@ public class SearchCustomer {
     public SearchCustomer() { }
 
     @GetMapping("/customer/search")
-    public Customer searchCustomer (@RequestParam Long id) {
+    public Object searchCustomer (@RequestParam Long id) {
 
-        Customer customer = service.checkCustomerById(id);
+        ResponseEntity<Customer> responseEntity = service.checkCustomerById(id);
 
-        return customer;
+     if(responseEntity.getStatusCode() == HttpStatus.NOT_FOUND){
+         return new ResponseEntity<Customer>(HttpStatus.NOT_FOUND);
+     }
+
+     else {
+         return "Str";
+     }
 
     }
 

@@ -3,6 +3,8 @@ package com.Ecomm.Ecomm.services;
 import com.Ecomm.Ecomm.dao.CustomerRepository;
 import com.Ecomm.Ecomm.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,18 +33,20 @@ public class CustomerService {
         return  success;
     }
 
-    public Customer checkCustomerById(@RequestParam  long id){
+    public ResponseEntity<Customer> checkCustomerById(@RequestParam  long id){
 
-        Customer customer;
+
 
         if(repository.existsById(id)){
-            customer = new Customer(repository.findById(id).get().getCusId(), repository.findById(id).get().getCusName());
+            Customer customer = new Customer();
+            customer.setCusName(repository.findById(id).get().getCusName());
+            customer.setCusId(repository.findById(id).get().getCusId());
+            return new ResponseEntity<>(customer, HttpStatus.FOUND);
 
         }
         else
-            customer = new Customer("CUSTOMER NOT FOUND");
+            return new ResponseEntity<Customer>(new Customer(), HttpStatus.NOT_FOUND);
 
-        return customer;
     }
 
 }
