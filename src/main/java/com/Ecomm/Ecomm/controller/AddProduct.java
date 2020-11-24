@@ -1,7 +1,6 @@
 package com.Ecomm.Ecomm.controller;
 
 import com.Ecomm.Ecomm.dao.ProductRepository;
-import com.Ecomm.Ecomm.model.Customer;
 import com.Ecomm.Ecomm.model.Product;
 import com.Ecomm.Ecomm.services.CustomerService;
 import com.Ecomm.Ecomm.services.ProductService;
@@ -12,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.FileNotFoundException;
@@ -39,15 +39,22 @@ public class AddProduct {
         for (Long id : reviewerCusIds) {
             System.out.println(id);
             String url = yamlFileServices.getUrl() + "?id=" + id;
-            ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
-            System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*Going to if for- "+id+"*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
-            System.out.println(responseEntity.getBody());
-            if (responseEntity.getStatusCode() == HttpStatus.NOT_FOUND) {
-                System.out.println("In F1");
-                exist = false;
-                break;
-
+            try {
+                ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
+            } catch (RestClientResponseException exception) {
+                if (exception.getRawStatusCode() == 404) {
+                    exist = false;
+                    break;
+                }
             }
+//                System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*Going to if for- "+id+"*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+//            System.out.println(responseEntity.getBody());
+//            if (responseEntity.getStatusCode() == HttpStatus.NOT_FOUND) {
+//                System.out.println("In F1");
+//                exist = false;
+//                break;
+//
+//            }
         }
 
         if (exist == false) {
