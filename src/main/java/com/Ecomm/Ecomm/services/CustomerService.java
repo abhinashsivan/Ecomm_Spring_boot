@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.Optional;
 
 @Service
 public class CustomerService {
@@ -26,26 +23,23 @@ public class CustomerService {
         try {
             repository.save(customer);
         } catch (Exception e) {
-            System.out.println("exception - "+e);
+            System.out.println("exception - " + e);
             success = false;
         }
 
-        return  success;
+        return success;
     }
 
-    public ResponseEntity<Customer> checkCustomerById(@RequestParam  long id){
+    public ResponseEntity<Customer> checkCustomerById(@RequestParam long id) {
 
-
-
-        if(repository.existsById(id)){
+        if (repository.existsById(id)) {
             Customer customer = new Customer();
             customer.setCusName(repository.findById(id).get().getCusName());
             customer.setCusId(repository.findById(id).get().getCusId());
             return new ResponseEntity<>(customer, HttpStatus.FOUND);
 
-        }
-        else
-            return new ResponseEntity<Customer>(new Customer(), HttpStatus.NOT_FOUND);
+        } else
+            return new ResponseEntity<Customer>(HttpStatus.NOT_FOUND);
 
     }
 

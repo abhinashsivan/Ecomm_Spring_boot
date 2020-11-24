@@ -16,7 +16,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.FileNotFoundException;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class AddProduct {
@@ -38,20 +37,27 @@ public class AddProduct {
         boolean exist = true;
 
         for (Long id : reviewerCusIds) {
-
-            String url = yamlFileServices.getUrl()+"?id="+id;
-            Customer customer = restTemplate.getForObject(url, Customer.class);
-            if(customer.getCusName().equalsIgnoreCase("CUSTOMER NOT FOUND"))
+            System.out.println(id);
+            String url = yamlFileServices.getUrl() + "?id=" + id;
+            ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
+            System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*Going to if for- "+id+"*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+            System.out.println(responseEntity.getBody());
+            if (responseEntity.getStatusCode() == HttpStatus.NOT_FOUND) {
+                System.out.println("In F1");
                 exist = false;
+                break;
+
+            }
+        }
+
+        if (exist == false) {
+            System.out.println("IN f2");
+            return new ResponseEntity<String>("User Not Found", HttpStatus.BAD_REQUEST);
 
         }
 
-        if (!exist)
-            return new ResponseEntity<String>("User Not Found", HttpStatus.NOT_FOUND);
 
         productService.saveToDB(new Product(productName, reviewerCusIds.toString()));
-
-
         return new ResponseEntity<String>("Product Added", HttpStatus.ACCEPTED);
     }
 }

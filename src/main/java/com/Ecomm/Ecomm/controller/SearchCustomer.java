@@ -21,17 +21,14 @@ public class SearchCustomer {
     public SearchCustomer() { }
 
     @GetMapping("/customer/search")
-    public Object searchCustomer (@RequestParam Long id) {
+    public ResponseEntity<String> searchCustomer (@RequestParam Long id) {
 
         ResponseEntity<Customer> responseEntity = service.checkCustomerById(id);
 
-     if(responseEntity.getStatusCode() == HttpStatus.NOT_FOUND){
-         return new ResponseEntity<Customer>(HttpStatus.NOT_FOUND);
-     }
-
-     else {
-         return "Str";
-     }
+     if(responseEntity.getStatusCode() == HttpStatus.NOT_FOUND)
+         return new ResponseEntity<>("TYA", HttpStatus.NOT_FOUND);
+     else
+         return new ResponseEntity<>(repository.findById(id).get().toString(), HttpStatus.FOUND);
 
     }
 
