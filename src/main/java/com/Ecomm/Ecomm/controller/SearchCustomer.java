@@ -16,11 +16,10 @@ public class SearchCustomer {
     @Autowired
     private CustomerRepository repository;
 
-    public SearchCustomer() {
-    }
+    public SearchCustomer() { }
 
     @GetMapping("/customer/search")
-    public Customer searchCustomer(@RequestParam Long id) {
+    public Customer searchCustomer (@RequestParam Long id) {
 
         Customer customer = service.checkCustomerById(id);
 
