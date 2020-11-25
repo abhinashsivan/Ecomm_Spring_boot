@@ -18,17 +18,18 @@ public class SearchCustomer {
     @Autowired
     private CustomerRepository repository;
 
-    public SearchCustomer() { }
+    public SearchCustomer() {
+    }
 
     @GetMapping("/customer/search")
-    public ResponseEntity<String> searchCustomer (@RequestParam Long id) {
+    public ResponseEntity<Object> searchCustomer(@RequestParam Long id) {
 
         ResponseEntity<Customer> responseEntity = service.checkCustomerById(id);
 
-     if(responseEntity.getStatusCode() == HttpStatus.NOT_FOUND)
-         return new ResponseEntity<>("User Not Found", HttpStatus.NOT_FOUND);
-     else
-         return new ResponseEntity<>(repository.findById(id).get().toString(), HttpStatus.FOUND);
+        if (responseEntity.getStatusCode() == HttpStatus.NOT_FOUND)
+            return new ResponseEntity<>("USER NOT FOUND", HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>("Search Results ->  " + repository.findById(id).get().getCusName(), HttpStatus.FOUND);
 
     }
 

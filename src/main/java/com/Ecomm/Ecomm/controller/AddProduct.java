@@ -47,24 +47,16 @@ public class AddProduct {
                     break;
                 }
             }
-//                System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*Going to if for- "+id+"*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
-//            System.out.println(responseEntity.getBody());
-//            if (responseEntity.getStatusCode() == HttpStatus.NOT_FOUND) {
-//                System.out.println("In F1");
-//                exist = false;
-//                break;
-//
-//            }
         }
 
         if (exist == false) {
             System.out.println("IN f2");
-            return new ResponseEntity<String>("User Not Found", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("NO SUCH USER FOUND", HttpStatus.BAD_REQUEST);
 
         }
 
 
         productService.saveToDB(new Product(productName, reviewerCusIds.toString()));
-        return new ResponseEntity<String>("Product Added", HttpStatus.ACCEPTED);
+        return new ResponseEntity<String>("PRODUCT ADDED", HttpStatus.ACCEPTED);
     }
 }

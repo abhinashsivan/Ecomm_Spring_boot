@@ -22,7 +22,6 @@ public class AddCustomer {
     public ResponseEntity<String> addCustomer(@RequestParam String name) {
 
 
-        //input validation
         if (name.isBlank())
             return new ResponseEntity<>("CHECK INPUT", HttpStatus.BAD_REQUEST);
 

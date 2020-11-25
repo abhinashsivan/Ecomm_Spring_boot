@@ -23,7 +23,6 @@ public class CustomerService {
         try {
             repository.save(customer);
         } catch (Exception e) {
-            System.out.println("exception - " + e);
             success = false;
         }
 
