@@ -4,6 +4,8 @@ import com.Ecomm.Ecomm.dao.ProductRepository;
 import com.Ecomm.Ecomm.model.Product;
 import com.Ecomm.Ecomm.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,13 +21,13 @@ public class SearchProduct {
     private ProductService productService;
 
     @GetMapping("/product/search")
-    public String searchProduct(@RequestParam Long id) {
+    public ResponseEntity<String> searchProduct(@RequestParam Long id) {
 
         Optional<Product> product = productService.findProductById(id);
 
         if (product.isPresent())
-            return "Results\n NAME: " + product.get().getProductName() + "Reviewed Users: " + product.get().getReviewedUsers();
+            return new ResponseEntity<>("Product Name: " + product.get().getProductName().toUpperCase() + "  Reviewed Users: " + product.get().getReviewedUsers(), HttpStatus.FOUND);
         else
-            return "product not found";
+            return new ResponseEntity<>("NO SUCH PRODUCT FOUND", HttpStatus.NOT_FOUND);
     }
 }

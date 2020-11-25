@@ -41,4 +41,11 @@ public class Customer {
         this.cusName = cusName;
     }
 
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "cusId=" + cusId +
+                ", cusName='" + cusName + '\'' +
+                '}';
+    }
 }

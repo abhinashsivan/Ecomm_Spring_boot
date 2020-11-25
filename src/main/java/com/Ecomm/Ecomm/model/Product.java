@@ -44,4 +44,13 @@ public class Product {
     public void setReviewedUsers(String reviewedUsers) {
         this.reviewedUsers = reviewedUsers;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", reviewedUsers='" + reviewedUsers + '\'' +
+                '}';
+    }
 }
