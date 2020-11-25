@@ -1,5 +1,6 @@
 package com.Ecomm.Ecomm.controller;
 
+import com.Ecomm.Ecomm.dao.CustomerRepository;
 import com.Ecomm.Ecomm.dao.ProductRepository;
 import com.Ecomm.Ecomm.model.Product;
 import com.Ecomm.Ecomm.services.ProductService;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -20,15 +23,27 @@ public class SearchProduct {
     private ProductRepository productRepository;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CustomerRepository customerRepository;
 
     @GetMapping("/product/search")
     public ResponseEntity<String> searchProduct(@RequestParam Long id) {
 
         Optional<Product> product = productService.findProductById(id);
 
-        if (product.isPresent())
-            return new ResponseEntity<>("Product Name: " + product.get().getProductName().toUpperCase() +
-                        "  Reviewed Users: " + Arrays.toString(product.get().getReviewedUsers()), HttpStatus.FOUND);
+
+
+        if (product.isPresent()) {
+
+            List<String> reviewedCusNames = new ArrayList<String>();
+
+            for (Long eachid : product.get().getReviewedUsers()) {
+                reviewedCusNames.add(customerRepository.findById(eachid).get().getCusName());
+            }
+            return new ResponseEntity<>("product name: " + product.get().getProductName().toUpperCase() +
+                    "  reviewed users: " + reviewedCusNames.toString().toUpperCase(), HttpStatus.FOUND);
+        }
+
         else
             return new ResponseEntity<>("NO SUCH PRODUCT FOUND", HttpStatus.NOT_FOUND);
     }
