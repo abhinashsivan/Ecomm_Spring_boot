@@ -11,12 +11,12 @@ public class Product {
     @GeneratedValue
     private Long productId;
     private String productName;
-    private String reviewedUsers;
+    private Long[] reviewedUsers;
 
     public Product() {
     }
 
-    public Product(String productName, String reviewedUsers) {
+    public Product(String productName, Long[] reviewedUsers) {
         this.productName = productName;
         this.reviewedUsers = reviewedUsers;
     }
@@ -37,20 +37,13 @@ public class Product {
         this.productName = productName;
     }
 
-    public String getReviewedUsers() {
+    public Long[] getReviewedUsers() {
         return reviewedUsers;
     }
 
-    public void setReviewedUsers(String reviewedUsers) {
+    public void setReviewedUsers(Long[] reviewedUsers) {
         this.reviewedUsers = reviewedUsers;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "productId=" + productId +
-                ", productName='" + productName + '\'' +
-                ", reviewedUsers='" + reviewedUsers + '\'' +
-                '}';
-    }
+
 }

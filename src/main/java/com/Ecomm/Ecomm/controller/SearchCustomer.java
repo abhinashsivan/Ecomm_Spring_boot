@@ -27,7 +27,7 @@ public class SearchCustomer {
         ResponseEntity<Customer> responseEntity = service.checkCustomerById(id);
 
         if (responseEntity.getStatusCode() == HttpStatus.NOT_FOUND)
-            return new ResponseEntity<>("USER NOT FOUND", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("CUSTOMER NOT FOUND", HttpStatus.NOT_FOUND);
         else
             return new ResponseEntity<>("Search Results ->  " + repository.findById(id).get().getCusName(), HttpStatus.FOUND);
 

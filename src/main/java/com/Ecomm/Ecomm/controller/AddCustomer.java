@@ -29,7 +29,7 @@ public class AddCustomer {
 
 
         if (sucess)
-            return new ResponseEntity<>("NEW EMPLOYEE ADDED", HttpStatus.CREATED);
+            return new ResponseEntity<>("NEW CUSTOMER ADDED", HttpStatus.CREATED);
         else
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }

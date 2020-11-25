@@ -15,7 +15,6 @@ import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.FileNotFoundException;
-import java.util.List;
 
 @RestController
 public class AddProduct {
@@ -33,11 +32,10 @@ public class AddProduct {
 
 
     @GetMapping("/product/add")
-    public ResponseEntity<String> addProduct(@RequestParam(name = "pname") String productName, @RequestParam(name = "ids") List<Long> reviewerCusIds) throws FileNotFoundException {
+    public ResponseEntity<String> addProduct(@RequestParam(name = "pname") String productName, @RequestParam(name = "ids") Long[] reviewerCusIds) throws FileNotFoundException {
         boolean exist = true;
 
         for (Long id : reviewerCusIds) {
-            System.out.println(id);
             String url = yamlFileServices.getUrl() + "?id=" + id;
             try {
                 ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
@@ -49,14 +47,13 @@ public class AddProduct {
             }
         }
 
-        if (exist == false) {
-            System.out.println("IN f2");
-            return new ResponseEntity<String>("NO SUCH USER FOUND", HttpStatus.BAD_REQUEST);
+        if (!exist) {
+            return new ResponseEntity<>("NO SUCH CUSTOMER FOUND", HttpStatus.BAD_REQUEST);
 
         }
 
 
-        productService.saveToDB(new Product(productName, reviewerCusIds.toString()));
-        return new ResponseEntity<String>("PRODUCT ADDED", HttpStatus.ACCEPTED);
+        productService.saveToDB(new Product(productName, reviewerCusIds));
+        return new ResponseEntity<>("PRODUCT ADDED", HttpStatus.ACCEPTED);
     }
 }
