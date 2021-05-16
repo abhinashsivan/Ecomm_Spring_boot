@@ -18,7 +18,7 @@ public class deleteCustomer {
     private CustomerRepository customerRepository;
 
     @DeleteMapping("/customer/{id}")
-    public ResponseEntity<String> deleteCus(@PathVariable Long id) {
+    public ResponseEntity<String> deleteCus(@PathVariable("id") Long id) {
 
         if (customerService.checkCustomerById(id).getStatusCode() == HttpStatus.NOT_FOUND) {
             return new ResponseEntity<>("Unable to perform as customer not found", HttpStatus.INTERNAL_SERVER_ERROR);
