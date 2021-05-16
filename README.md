@@ -1,4 +1,4 @@
-# Ecomm_Spring_boot_CaseStudy_2
+# Ecomm_Spring_boot
 
 ## Customer
   
