@@ -4,7 +4,7 @@
   
   > id, name
 
-### customer apis (../customer/..)
+#### customer apis (../customer/..)
   - add customer
   - search customer
 
@@ -12,6 +12,6 @@
   
   > id, product name, reviewed customers' id
 
-### product apis (../product/..)
+#### product apis (../product/..)
   - add product
   - search product
