@@ -19,7 +19,7 @@ public class SearchCustomer {
     private CustomerRepository repository;
 
     @GetMapping("/customer/{id}")
-    public ResponseEntity<Object> searchCustomer(@PathVariable("id") Long id) {
+    public ResponseEntity<String> searchCustomer(@PathVariable("id") Long id) {
 
         ResponseEntity<Customer> responseEntity = service.checkCustomerById(id);
 
@@ -27,7 +27,7 @@ public class SearchCustomer {
             return new ResponseEntity<>("CUSTOMER NOT FOUND", HttpStatus.NOT_FOUND);
         else {
             if (repository.findById(id).isPresent()) {
-                return new ResponseEntity<>("CUSTOMERS FOUND \n " + repository.findById(id).get().getCusName(), HttpStatus.FOUND);
+                return new ResponseEntity<>(repository.findById(id).get().toString(), HttpStatus.FOUND);
             } else
                 return new ResponseEntity<>("Internal Error", HttpStatus.INTERNAL_SERVER_ERROR);
         }

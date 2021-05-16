@@ -43,9 +43,9 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "cusId=" + cusId +
-                ", cusName='" + cusName + '\'' +
+        return "Customer Info {" +
+                "customer Id=" + cusId +
+                ", customer Name='" + cusName + '\'' +
                 '}';
     }
 }

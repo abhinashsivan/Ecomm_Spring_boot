@@ -30,8 +30,8 @@ public class AddCustomer {
 
 
         if (success)
-            return new ResponseEntity<>("NEW CUSTOMER ADDED", HttpStatus.CREATED);
+            return new ResponseEntity<>(new Customer(name).toString(), HttpStatus.CREATED);
         else
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Failed ", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
