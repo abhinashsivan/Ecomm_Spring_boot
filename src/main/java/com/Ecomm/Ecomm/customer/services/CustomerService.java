@@ -42,4 +42,15 @@ public class CustomerService {
 
     }
 
+    public boolean removeCustomerFromDB(Customer customer) {
+        boolean success = true;
+        try {
+            repository.delete(customer);
+        } catch (Exception e) {
+            success = false;
+        }
+
+        return success;
+    }
+
 }
