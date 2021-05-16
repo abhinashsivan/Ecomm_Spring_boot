@@ -1,12 +1,11 @@
-package com.Ecomm.Ecomm.controller;
+package com.Ecomm.Ecomm.customer.controller;
 
-import com.Ecomm.Ecomm.dao.CustomerRepository;
-import com.Ecomm.Ecomm.model.Customer;
-import com.Ecomm.Ecomm.services.CustomerService;
+import com.Ecomm.Ecomm.customer.dao.CustomerRepository;
+import com.Ecomm.Ecomm.customer.model.Customer;
+import com.Ecomm.Ecomm.customer.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

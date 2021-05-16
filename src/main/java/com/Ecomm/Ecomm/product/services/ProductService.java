@@ -1,7 +1,7 @@
-package com.Ecomm.Ecomm.services;
+package com.Ecomm.Ecomm.product.services;
 
-import com.Ecomm.Ecomm.dao.ProductRepository;
-import com.Ecomm.Ecomm.model.Product;
+import com.Ecomm.Ecomm.product.dao.ProductRepository;
+import com.Ecomm.Ecomm.product.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
-package com.Ecomm.Ecomm.dao;
+package com.Ecomm.Ecomm.product.dao;
 
-import com.Ecomm.Ecomm.model.Product;
+import com.Ecomm.Ecomm.product.model.Product;
 import org.springframework.data.repository.CrudRepository;
 
 public interface ProductRepository extends CrudRepository<Product, Long> {

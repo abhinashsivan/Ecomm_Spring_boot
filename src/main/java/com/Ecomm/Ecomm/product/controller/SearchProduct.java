@@ -1,14 +1,13 @@
-package com.Ecomm.Ecomm.controller;
+package com.Ecomm.Ecomm.product.controller;
 
-import com.Ecomm.Ecomm.dao.CustomerRepository;
-import com.Ecomm.Ecomm.dao.ProductRepository;
-import com.Ecomm.Ecomm.model.Product;
-import com.Ecomm.Ecomm.services.ProductService;
+import com.Ecomm.Ecomm.customer.dao.CustomerRepository;
+import com.Ecomm.Ecomm.product.dao.ProductRepository;
+import com.Ecomm.Ecomm.product.model.Product;
+import com.Ecomm.Ecomm.product.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 

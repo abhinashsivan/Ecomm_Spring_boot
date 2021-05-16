@@ -1,4 +1,4 @@
-package com.Ecomm.Ecomm.services;
+package com.Ecomm.Ecomm.customer.services;
 
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.Ecomm.Ecomm.model;
+package com.Ecomm.Ecomm.customer.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
