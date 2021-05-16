@@ -22,7 +22,7 @@ public class AddProduct {
     @Autowired
     CustomerService customerService;
     @Autowired
-    ProductRepository productRepositoy;
+    ProductRepository productRepository;
     @Autowired
     ProductService productService;
     @Autowired
@@ -49,10 +49,7 @@ public class AddProduct {
 
         if (!exist) {
             return new ResponseEntity<>("NO SUCH CUSTOMER FOUND", HttpStatus.BAD_REQUEST);
-
         }
-
-
         productService.saveToDB(new Product(productName, reviewerCusIds));
         return new ResponseEntity<>("PRODUCT ADDED", HttpStatus.ACCEPTED);
     }

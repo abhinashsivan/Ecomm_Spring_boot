@@ -18,9 +18,6 @@ public class SearchCustomer {
     @Autowired
     private CustomerRepository repository;
 
-    public SearchCustomer() {
-    }
-
     @GetMapping("/customer/search")
     public ResponseEntity<Object> searchCustomer(@RequestParam Long id) {
 
@@ -35,7 +32,6 @@ public class SearchCustomer {
             else
                 return new ResponseEntity<>("Internal Error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
 
     }
 
