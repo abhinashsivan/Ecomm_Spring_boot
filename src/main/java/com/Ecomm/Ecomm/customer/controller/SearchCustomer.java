@@ -28,8 +28,14 @@ public class SearchCustomer {
 
         if (responseEntity.getStatusCode() == HttpStatus.NOT_FOUND)
             return new ResponseEntity<>("CUSTOMER NOT FOUND", HttpStatus.NOT_FOUND);
-        else
-            return new ResponseEntity<>("Search Results ->  " + repository.findById(id).get().getCusName(), HttpStatus.FOUND);
+        else {
+            if(repository.findById(id).isPresent()){
+                return new ResponseEntity<>("CUSTOMERS FOUND \n " + repository.findById(id).get().getCusName(), HttpStatus.FOUND);
+            }
+            else
+                return new ResponseEntity<>("Internal Error", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
 
     }
 

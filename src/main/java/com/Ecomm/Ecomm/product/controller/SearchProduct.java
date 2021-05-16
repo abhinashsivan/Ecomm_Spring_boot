@@ -35,11 +35,17 @@ public class SearchProduct {
 
             List<String> reviewedCusNames = new ArrayList<>();
 
-            for (Long eachid : product.get().getReviewedUsers()) {
-                reviewedCusNames.add(customerRepository.findById(eachid).get().getCusName());
+            for (Long eachId : product.get().getReviewedUsers()) {
+                if (customerRepository.findById(eachId).isPresent()) {
+                    reviewedCusNames.add(customerRepository.findById(eachId).get().getCusName());
+                }
+
+                else{
+                    return new ResponseEntity<>("Error while reading data from server", HttpStatus.INTERNAL_SERVER_ERROR);
+                }
             }
             return new ResponseEntity<>("product name: " + product.get().getProductName().toUpperCase() +
-                    "  reviewed users: " + reviewedCusNames.toString().toUpperCase(), HttpStatus.FOUND);
+                    " \n reviewed users: " + reviewedCusNames.toString().toUpperCase(), HttpStatus.FOUND);
         } else
             return new ResponseEntity<>("NO SUCH PRODUCT FOUND", HttpStatus.NOT_FOUND);
     }
