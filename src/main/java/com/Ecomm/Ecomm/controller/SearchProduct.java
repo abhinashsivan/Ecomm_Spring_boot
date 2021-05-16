@@ -26,15 +26,15 @@ public class SearchProduct {
     @Autowired
     private CustomerRepository customerRepository;
 
-    @GetMapping("/product/search/{id}")
-    public ResponseEntity<String> searchProduct(@PathVariable Long id) {
+    @GetMapping("/product/search")
+    public ResponseEntity<String> searchProduct(@RequestParam Long id) {
 
         Optional<Product> product = productService.findProductById(id);
 
 
         if (product.isPresent()) {
 
-            List<String> reviewedCusNames = new ArrayList<String>();
+            List<String> reviewedCusNames = new ArrayList<>();
 
             for (Long eachid : product.get().getReviewedUsers()) {
                 reviewedCusNames.add(customerRepository.findById(eachid).get().getCusName());

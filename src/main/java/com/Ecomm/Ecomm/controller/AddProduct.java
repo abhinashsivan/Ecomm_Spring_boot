@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClientResponseException;
@@ -31,7 +32,7 @@ public class AddProduct {
     RestTemplate restTemplate = new RestTemplate();
 
 
-    @GetMapping("/product/add")
+    @PostMapping("/product/add")
     public ResponseEntity<String> addProduct(@RequestParam(name = "pname") String productName, @RequestParam(name = "ids") Long[] reviewerCusIds) throws FileNotFoundException {
         boolean exist = true;
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,17 +19,17 @@ public class AddCustomer {
     @Autowired
     private CustomerService service;
 
-    @GetMapping("/customer/add")
+    @PostMapping("/customer/add")
     public ResponseEntity<String> addCustomer(@RequestParam String name) {
 
 
         if (name.isBlank())
             return new ResponseEntity<>("CHECK INPUT", HttpStatus.BAD_REQUEST);
 
-        boolean sucess = service.saveCustomertoDB(new Customer(name));
+        boolean success = service.saveCustomertoDB(new Customer(name));
 
 
-        if (sucess)
+        if (success)
             return new ResponseEntity<>("NEW CUSTOMER ADDED", HttpStatus.CREATED);
         else
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
