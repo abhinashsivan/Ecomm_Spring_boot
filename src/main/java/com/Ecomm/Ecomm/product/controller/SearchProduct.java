@@ -25,7 +25,7 @@ public class SearchProduct {
     @Autowired
     private CustomerRepository customerRepository;
 
-    @GetMapping("/product/search")
+    @GetMapping("/product")
     public ResponseEntity<String> searchProduct(@RequestParam Long id) {
 
         Optional<Product> product = productService.findProductById(id);
