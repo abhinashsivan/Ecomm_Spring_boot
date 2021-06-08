@@ -1,4 +1,4 @@
-package com.Ecomm.Ecomm.product.model;
+package com.Ecomm.ecomm.product.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +14,7 @@ public class Product {
     private Long productId;
 
     @NotNull
-    @Size(min=4, max=15)
+    @Size(min=2, max=15)
     private String productName;
     private String productDescription;
     private Float productPrice;

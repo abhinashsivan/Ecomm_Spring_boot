@@ -1,4 +1,4 @@
-package com.Ecomm.Ecomm;
+package com.Ecomm.ecomm;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
