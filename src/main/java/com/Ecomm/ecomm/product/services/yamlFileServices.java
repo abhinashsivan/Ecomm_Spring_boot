@@ -1,4 +1,4 @@
-package com.Ecomm.Ecomm.product.services;
+package com.Ecomm.ecomm.product.services;
 
 import org.springframework.stereotype.Service;
 import org.yaml.snakeyaml.Yaml;

@@ -1,7 +1,7 @@
-package com.Ecomm.Ecomm.customer.controller;
+package com.Ecomm.ecomm.customer.controller;
 
-import com.Ecomm.Ecomm.customer.dao.CustomerRepository;
-import com.Ecomm.Ecomm.customer.services.CustomerService;
+import com.Ecomm.ecomm.customer.dao.CustomerRepository;
+import com.Ecomm.ecomm.customer.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

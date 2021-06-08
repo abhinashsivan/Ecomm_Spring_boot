@@ -1,4 +1,4 @@
-package com.Ecomm.Ecomm.customer.model;
+package com.Ecomm.ecomm.customer.model;
 
 
 import javax.persistence.Entity;

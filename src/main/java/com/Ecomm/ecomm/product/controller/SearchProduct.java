@@ -1,9 +1,9 @@
-package com.Ecomm.Ecomm.product.controller;
+package com.Ecomm.ecomm.product.controller;
 
-import com.Ecomm.Ecomm.customer.dao.CustomerRepository;
-import com.Ecomm.Ecomm.product.dao.ProductRepository;
-import com.Ecomm.Ecomm.product.model.Product;
-import com.Ecomm.Ecomm.product.services.ProductService;
+import com.Ecomm.ecomm.customer.dao.CustomerRepository;
+import com.Ecomm.ecomm.product.dao.ProductRepository;
+import com.Ecomm.ecomm.product.model.Product;
+import com.Ecomm.ecomm.product.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +41,7 @@ public class SearchProduct {
                 }
 
                 else{
-                    return new ResponseEntity<>("Error while reading data from server", HttpStatus.INTERNAL_SERVER_ERROR);
+                    return new ResponseEntity<>("No corresponding user found in  user table", HttpStatus.INTERNAL_SERVER_ERROR);
                 }
             }
             return new ResponseEntity<>("product name: " + product.get().getProductName().toUpperCase() +
